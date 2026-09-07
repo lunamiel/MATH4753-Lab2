@@ -1,0 +1,15 @@
+Package: lab2
+Type: Package
+Title: Just the second lab
+Version: 0.1.0
+Authors@R: c(
+    person(
+      "Lucia", "Nguyen",
+      email = "donteduyennguyen@gmail.com",
+      role = c("aut", "cre")
+    )
+  )
+Description: MATH4753-Lab2
+License: What license is it under?
+Encoding: UTF-8
+LazyData: true
