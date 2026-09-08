@@ -52,12 +52,53 @@ mpg[abs(z) >3]
 ```{r}
 mpgcol = ifelse(abs(z) > 3, "Red", ifelse(abs(z) >= 2 & abs(z) <= 3, "Blue", "Black"))
 library(lattice)
-dotplot(mpg, col = mpgcol, main = "Color plot for mpg data")
+dotplot(mpg, col = mpgcol, main = "Color dotplot for MPG Data")
+```
+
+## Task 4
+- Boxplot of the mpg variable.
+```{r}
+boxplot(mpg, main = "MPG Boxplot", xlab = "MPG", col = "black", horizontal = TRUE, notch = TRUE)
+```
+
+- Predict with Chebyshev's theorem.
+
+The proportion of data within 2 standard deviations of
+the mean, using Chebyshev is at least 
+    $1 - \frac{1}{k^2}$
+of data lies within k standard deviations. 
+For k = 2,
+```{r}
+k = 2
+1 - 1 / (k^2)
+```
+
+- Calculate the exact proportion within 2 standard deviation of the mean.
+```{r}
+exactprop = length(mpg[abs(z) <= 2]) /length(mpg)
+exactprop
+```
+
+- Does Chebyshev agree with the data?
+
+Yes. Chebyshev's theorem guarantees that at least 75% of the data falls within 2 standard deviations of the mean, and the exact proportion value is 96% -> above that minimum. So the data satisfies the theorem's bound.
+
+- Empirical rule prediction:
+
+The empirical rule states that for roughly bell-shaped data, about 95% of values fall within 2 standard deviations of the mean.
+```{r}
+   empirical_prop = 0.95
+   empirical_prop
 ```
 
 
+- How well does it correspond?
 
+Really well. The actual proportion (96%), which is extremely close to the empirical rule's predicted of 95%.
 
+- Is the empirical rule valid in this case? Why?
+
+Yes, it's valid here since the data is roughly bell-shaped/symmetric (in the boxplot and dotplot), and the actual proportion (96%) is very close to what the empirical rule predicted (95%).
 
 
 
