@@ -1,0 +1,63 @@
+---
+title: "lab2"
+author: "Lucia Nguyen"
+date: "2026-09-07"
+output: 
+  html_document:
+    toc: yes
+    toc_float: yes
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Tasks
+
+## Task 1
+Working directory.
+```{r}
+getwd()
+```
+
+## Task 2
+Read and obtain the first six lines of the data.
+```{r}
+epagas = read.csv("EPAGAS.csv")
+head(epagas)
+```
+
+## Task 3
+- Make the mpg object.Transform mpg to z.
+```{r}
+mpg = epagas$MPG
+z = (mpg - mean(mpg)) / sd(mpg)
+head(z)
+print(paste0("Mean = ", round(mean(z), digits = 4)), quote = FALSE)
+print(paste0("Variance = ", var(z)), quote = FALSE)
+print(paste0("Standard Deviation = ", sd(z)), quote = FALSE)
+```
+
+- Values of mpg that are possible outliers.
+```{r}
+mpg[abs(z) >= 2 & abs(z) <= 3]
+```
+
+- Values of mpg that defined as outliers.
+```{r}
+mpg[abs(z) >3]
+```
+
+- Construct a dotplot with colors.
+```{r}
+mpgcol = ifelse(abs(z) > 3, "Red", ifelse(abs(z) >= 2 & abs(z) <= 3, "Blue", "Black"))
+library(lattice)
+dotplot(mpg, col = mpgcol, main = "Color plot for mpg data")
+```
+
+
+
+
+
+
+
